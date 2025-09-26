@@ -5,8 +5,9 @@
 </head>
 <body>
     <h1>
-        <?php 
-            echo "Hello, "   .   "Universe";
+        <?php
+            $greeting = "Hello"; 
+            echo $greeting . " " . "Universe";
         ?>
     </h1>
 </body>
