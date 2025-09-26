@@ -9,15 +9,27 @@
 
     <?php
         $books = [
-            "Do Androids Dream of Electric Sheep",
-            "The Langoliers",
-            "Hail Mary"
+            [
+                'name' => 'Do Androids Dream of Electric Sheep',
+                'author' => 'Phipips K.Dick',
+                'purchaaseURL' => 'http://example.com'
+                
+            ],
+            [
+                'name' => 'Hail Mary',
+                'author' => 'Andy Weir',
+                'purchaaseURL' => 'http://example.com'
+            ]
         ];
     ?>
 
     <ul>
         <?php foreach ($books as $book) : ?>
-            <li><?= $book ?></li>
+            <li>
+                <a href="<?= $book['purchaseURL'] ?>">
+                    <?= $book['name']; ?>
+                </a>
+            </li>
         <?php endforeach; ?>
     </ul>
 </body>
