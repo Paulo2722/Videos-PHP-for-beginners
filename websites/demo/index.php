@@ -3,30 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Demo</title>
-    <style>
-        body{
-            display : grid;
-            place-items: center;
-            height: 100vh;
-            margin 0;
-            font-family: sans-serif;
-        }
-    </style>
 </head>
 <body>
-    <?php 
-        $name = "Dark Matter";
-        $read = true;
+    <h1>Recommended Books</h1>
 
-        if($read){
-            $message = "You have read $name";
-        }else{
-            $message = "You have not read $name";
-        }
+    <?php
+        $books = [
+            "Do Androids Dream of Electric Sheep",
+            "The Langoliers",
+            "Hail Mary"
+        ];
     ?>
-    
-    <h1>
-        <?php echo $message; ?>
-    </h1>
+
+    <ul>
+        <?php foreach ($books as $book){
+            echo "<li>$book</li>";
+        }
+        ?>
+    </ul>
 </body>
 </html>
