@@ -30,17 +30,17 @@
             ]
         ];
 
-        function filterByAuthor($books, $author){
-            $filteredBooks = [];
-
-            foreach ($books as $book){
-                if ($book['author'] === $author){
-                    $filteredBooks[] = $book;
+        function filter($items, $key, $value){
+            $filteredItems = [];
+            
+            foreach ($items as $item){
+            if ($item[$key] === $value){
+                    $filteredItems[] = $item;
                 }
             }
-            return $filteredBooks;
+            return $filteredItems;
         }
-        $filteredBooks = filterByAuthor($books, 'Phipips K.Dick');
+        $filteredBooks = filter($books, 'releaseYear', 2011);
     ?>
 
     <ul>
