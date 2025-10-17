@@ -1,31 +1,36 @@
 <?php
 
 class Database {
-    private $pdo;
+    private $connection;
 
-    public function __construct() {
-        $host = 'db';          // Contenedor MySQL en docker-compose
-        $db   = 'php_videos';
-        $user = 'root';
-        $pass = '1234';
-        $charset = 'utf8mb4';
+    public function __construct(array $config) {
 
-        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+        $dsn = 'mysql:' . http_build_query([
+            'host' => $config['host'],
+            'port' => $config['port'],
+            'dbname' => $config['dbname'],
+            'charset' => $config['charset']
+        ], '', ';');
+
+        $username = $config['username'];
+        $password = $config['password'];
+
+        $options = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ];
 
         try {
-            $this->pdo = new PDO($dsn, $user, $pass, [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            ]);
+            $this->connection = new PDO($dsn, $username, $password, $options);
         } catch (PDOException $e) {
             die("❌ Error en la conexión: " . $e->getMessage());
         }
     }
 
     // Método dinámico para ejecutar consultas
-    public function query($sql, $params = []) {
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
-        return $stmt; // devolvemos el statement para flexibilidad
+    public function query($query) {
+        $statement = $this->connection->prepare($query);
+        $statement->execute();
+        return $statement;
     }
 }

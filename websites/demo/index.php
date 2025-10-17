@@ -4,8 +4,15 @@ require 'functions.php';
 // require 'router.php';
 require 'Database.php';
 
-$db = new Database();
+$config = require('config.php');
 
+$db = new Database($config['database']);
+
+$posts = $db->query("select * from posts")->fetchAll();
+
+dd($posts);
+
+/*
 // Ejecutar la consulta
 $statement = $db->query("SELECT * FROM posts");
 
@@ -16,7 +23,7 @@ foreach ($posts as $post) {
     echo "<li>" . htmlspecialchars($post['title']) . "</li>";
 }
 
-/*
+
 
 // Datos de conexión
 $host = 'db';             // nombre del servicio MySQL en docker-compose
