@@ -10,6 +10,7 @@
               <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
               <a href="/" class="<?= urlIs('/') ? 'by-gray-900 text-white' : 'text-gray-300'; ?> hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium" aria-current="page" class="rounded-md bg-gray-950/50 px-3 py-2 text-sm font-medium text-white">Home</a>
               <a href="/about" class="<?= urlIs('/about') ? 'by-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">About</a>
+              <a href="/notes" class="<?= urlIs('/notes') ? 'by-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Notes</a>
               <a href="/contact" class="<?= urlIs('/contact') ? 'by-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact</a>
             </div>
           </div>
