@@ -1,5 +1,7 @@
 <?php
 
+$routes = require('routes.php');
+
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 // Elimina /index.php si aparece
@@ -8,13 +10,7 @@ $uri = str_replace('/index.php', '', $uri);
 // Elimina extensión .php si el usuario la pone
 $uri = str_replace('.php', '', $uri);
 
-$routes = [
-    '/' => 'controllers/index.php',
-    '/about' => 'controllers/about.php',
-    '/notes' => 'controllers/notes.php',
-    '/note' => 'controllers/note.php',
-    '/contact' => 'controllers/contact.php',
-];
+
 
 function routeToController($uri, $routes) {
     if (array_key_exists($uri, $routes)) {
