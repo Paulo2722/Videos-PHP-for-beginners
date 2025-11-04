@@ -3,9 +3,6 @@
 $config = require('config.php');
 $db = new Database($config['database']);
 
-$heading = 'My Notes';
+$heading = 'Home';
 
-// Obtén todas las notas
-$notes = $db->query('SELECT * FROM notes WHERE user_id = 1')->get();
-
-require 'views/notes.view.php';
+require 'views/index.view.php';
