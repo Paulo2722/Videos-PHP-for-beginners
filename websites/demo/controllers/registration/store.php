@@ -10,37 +10,48 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 $errors = [];
+
+// Validaciones
 if (!Validator::email($email)) {
-   $errors['email'] = 'Da una dirección de correo válida';
+    $errors['email'] = 'Da una dirección de correo válida.';
 }
 
 if (!Validator::string($password, 7, 255)) {
-    $errors['password'] = 'Da una contraseña de al menos de 7 carácteres';
+    $errors['password'] = 'Da una contraseña de al menos 7 caracteres.';
 }
 
-if (! empty($errors)) {
+if (!empty($errors)) {
     return view('registration/create.view.php', [
         'errors' => $errors
     ]);
 }
 
-$user = $db->query('select * from users where email = :email', [
+// Comprobar si el usuario ya existe
+$user = $db->query('SELECT * FROM users WHERE email = :email', [
     'email' => $email
 ])->find();
 
 if ($user) {
-    header('location: /');
-    exit();
-} else {
-    $db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
-        'email' => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT)
+    // Ya existe -> redirigir o mostrar error
+    $errors['email'] = 'Este correo ya está registrado.';
+    return view('registration/create.view.php', [
+        'errors' => $errors
     ]);
-
-    $_SESSION['user'] = [
-        'email' => $email
-    ];
-
-    header('location: /');
-    exit();
 }
+
+// Insertar nuevo usuario
+$db->query('INSERT INTO users (email, password) VALUES (:email, :password)', [
+    'email' => $email,
+    'password' => password_hash($password, PASSWORD_BCRYPT)
+]);
+
+// Obtener usuario recién creado
+$user = $db->query('SELECT * FROM users WHERE email = :email', [
+    'email' => $email
+])->find();
+
+// Iniciar sesión automáticamente
+login($user);
+
+header('Location: /');
+exit();
