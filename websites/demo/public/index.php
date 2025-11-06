@@ -3,18 +3,13 @@
 use Core\Sessions;
 use Core\ValidationException;
 
-session_start();
-
 const BASE_PATH = __DIR__.'/../';
 
-require BASE_PATH.'Core/functions.php';
+session_start();
 
-spl_autoload_register(function ($class) {
-    $class = str_replace('\\', '/', $class); // convierte namespaces a paths
-    require base_path("{$class}.php");
-});
-
-require base_path('bootstrap.php');
+require BASE_PATH . '/vendor/autoload.php';
+require BASE_PATH . 'Core/functions.php';
+require BASE_PATH . 'bootstrap.php';
 
 $router = new \Core\Router();
 
@@ -35,7 +30,7 @@ try {
     return redirect($router->previousUrl());
 }
 
-Session:unflash();
+Session::unflash();
 
 /*
 $id = $_GET['id'];
