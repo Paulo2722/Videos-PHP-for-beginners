@@ -4,7 +4,7 @@ use Core\App;
 use Core\Database;
 use Core\Validator;
 
-$db = App::resolve(Database::class);
+$db = App::resolve(Database::class)();
 
 $email = $_POST['email'];
 $password = $_POST['password'];

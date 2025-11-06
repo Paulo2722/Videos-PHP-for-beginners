@@ -4,10 +4,10 @@ namespace Core;
 
 class Authenticator
 {
-    public function attempt($email, $password)
-    {
-        $user = App::resolve(Database::class)
-            ->query('select * from users where email = :email', [
+    public function attempt($email, $password){
+        $db =App::resolve(Database::class)();
+        
+        $user = $db->query('select * from users where email = :email', [
             'email' => $email
         ])->find();
 

@@ -18,7 +18,7 @@ class Container{
         if(array_key_exists($key, $this->bindings)){
             $resolver = $this->bindings[$key];
 
-            return call_user_func($resolver);
+            return $resolver;
         }
     }
 }
