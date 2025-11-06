@@ -34,7 +34,7 @@
                                   Has iniciado sesión
                                 </button>
                             <?php else : ?>
-                                <a href="/register" class="text-white">Register</a>
+                                <a href="/index.php/register" class="text-white">Register</a>
                             <?php endif; ?>
 
               <el-menu anchor="bottom end" popover class="w-48 origin-top-right rounded-md bg-gray-800 py-1 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
