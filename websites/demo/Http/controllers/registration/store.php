@@ -51,7 +51,7 @@ $user = $db->query('SELECT * FROM users WHERE email = :email', [
 ])->find();
 
 // Iniciar sesión automáticamente
-login($user);
+(new \Core\Authenticator)->login($user);
 
-header('Location: /');
+redirect('/');
 exit();
